@@ -9,70 +9,105 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxViewBinder
+import RxViewController
 
-class ViewController: UIViewController {
-    let disposeBag = DisposeBag()
-    
-    var data: [ExpandableDynamicCellViewModel] = [
-    ExpandableDynamicCellViewModel(titleText: "title", descriptionText: "description", contentText: "content"),
-    ExpandableDynamicCellViewModel(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
-    ExpandableDynamicCellViewModel(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oi pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjjwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
-    ExpandableDynamicCellViewModel(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw p pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
-    ExpandableDynamicCellViewModel(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj"),
-    ExpandableDynamicCellViewModel(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oak pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjwlaw; l")
-    ]
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    var cell: ExpandableDynamicCell!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViews()
-    }
+class ViewController: UIViewController, BindView{
+	typealias ViewBinder = CellViewModel
 
-    func setupViews() {
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        
-        Observable.of(data).bind(to: tableView.rx.items) { tableView, row, element -> ExpandableDynamicCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ExpandableDynamicCell") as! ExpandableDynamicCell
-            cell.configure(element)
-            return cell
-        }.disposed(by: disposeBag)
-        
-        tableView.rx.itemSelected
-            .subscribe { [unowned self] (indexPath) in
-                if let row = indexPath.element?.row {
-                    self.data[row].toggle()
-                    self.tableView.beginUpdates()
-                    self.tableView.endUpdates()
-                }
-        }.disposed(by: disposeBag)
-    }
-    
-    func heightForData(_ data: ExpandableDynamicCellViewModel) -> CGFloat {
-        if cell == nil {
-            cell = tableView.dequeueReusableCell(withIdentifier: "ExpandableDynamicCell") as? ExpandableDynamicCell
-        }
-        cell.configure(data)
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        
-        let sizeTop = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        
-        if data.isExpanded {
-            return sizeTop.height + sizeBottom.height + 60
-        } else {
-            return sizeTop.height + 40
-        }
-    }
-    
+	let disposeBag = DisposeBag()
+	@IBOutlet weak var tableView: UITableView!
+
+	var cell: NoticeCell!
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+	}
+
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		self.viewBinder = CellViewModel()
+	}
+
+	func state(viewBinder: ViewBinder) {
+		self.tableView.rx
+			.setDelegate(self)
+			.disposed(by: disposeBag)
+
+		self.tableView.register(NoticeCell.self, forCellReuseIdentifier: NoticeCell.id)
+		viewBinder.state
+			.fetchInfo
+			.asObservable()
+			.bind(to: tableView.rx.items){ tableView, _, item -> UITableViewCell in
+				guard let cell = tableView.dequeueReusableCell(withIdentifier: NoticeCell.id) as? NoticeCell else { return UITableViewCell()}
+				cell.configure(item)
+				return cell
+
+			}
+			.disposed(by: disposeBag)
+
+		viewBinder.state
+			.afterToggleRelay
+			.drive(onNext: { [weak self] in
+				self?.tableView.beginUpdates()
+				self?.tableView.endUpdates()
+			}).disposed(by: disposeBag)
+
+		//		viewBinder.state
+		//			.asObservable()
+		//			.subscribe(onNext: { [weak self] _ in
+		//				self?.tableView.beginUpdates()
+		//				self?.tableView.endUpdates()
+		//			})
+		//			.disposed(by: disposeBag)
+	}
+
+	func command(viewBinder: ViewBinder) {
+		self.tableView.rx.itemSelected
+			.map{ ViewBinder.Command.toggle($0)}
+			.bind(to: viewBinder.command)
+			.disposed(by: disposeBag)
+		//			.map{ [weak self] (indexPath) in
+		//				if let row = indexPath.element?.row {
+		//					_ = viewBinder.Command.toggle(row)
+		//					self?.tableView.beginUpdates()
+		//					self?.tableView.endUpdates()
+		//				}}.bind(to: viewBinder.command)
+
+		self.rx.viewWillAppear
+			.map{ _ in ViewBinder.Command.fetch}
+			.bind(to: viewBinder.command)
+			.disposed(by: disposeBag)
+	}
+
+	func heightForData(_ data: CellDTO) -> CGFloat {
+		if cell == nil {
+			cell = tableView.dequeueReusableCell(withIdentifier: NoticeCell.id) as? NoticeCell
+		}
+		cell.configure(data)
+		cell.setNeedsLayout()
+		cell.layoutIfNeeded()
+
+		let sizeTop = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+		let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+
+
+		if data.isExpanded {
+
+			return sizeTop.height + sizeBottom.height + 60
+		} else {
+			return sizeTop.height + 40
+		}
+	}
+
 }
 
 extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return heightForData(data[indexPath.row])
-    }
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		guard let items = viewBinder?.items[indexPath.row] else { return 0.0}
+		return self.heightForData(items)
+	}
+
 }
