@@ -63,42 +63,13 @@ class CellViewModel: ViewBindable {
 			case .fetch :
 				Observable<[CellDTO]>.just(
 					[
-						CellDTO(titleText: "제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목", descriptionText: "날짜날짜", contentText: "내용내용"),
-						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
-						CellDTO(titleText: "다다다다", descriptionText: "다다다다다", contentText: "다다다다다다다다"),
-						CellDTO(titleText: "라라라라", descriptionText: "리리리리리", contentText: "로로로로로로로로"),
-						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모"),
-						CellDTO(titleText: "바바바바", descriptionText: "비비비비비", contentText: "보보보보보보보보"),
-						CellDTO(titleText: "가가가가", descriptionText: "기기기기기", contentText: "고고고고고고고고"),
-						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
-						CellDTO(titleText: "다다다다", descriptionText: "다다다다다", contentText: "다다다다다다다다"),
-						CellDTO(titleText: "라라라라", descriptionText: "리리리리리", contentText: "로로로로로로로로"),
-						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모"),
-						CellDTO(titleText: "바바바바", descriptionText: "비비비비비", contentText: "보보보보보보보보"),
-						CellDTO(titleText: "가가가가", descriptionText: "기기기기기", contentText: "고고고고고고고고"),
-						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
-						CellDTO(titleText: "다다다다", descriptionText: "다다다다다", contentText: "다다다다다다다다"),
-						CellDTO(titleText: "라라라라", descriptionText: "리리리리리", contentText: "로로로로로로로로"),
-						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모"),
-						CellDTO(titleText: "바바바바", descriptionText: "비비비비비", contentText: "보보보보보보보보"),
-						CellDTO(titleText: "가가가가", descriptionText: "기기기기기", contentText: "고고고고고고고고"),
-						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
-						CellDTO(titleText: "다다다다", descriptionText: "다다다다다", contentText: "다다다다다다다다"),
-						CellDTO(titleText: "라라라라", descriptionText: "리리리리리", contentText: "로로로로로로로로"),
-						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모"),
-						CellDTO(titleText: "바바바바", descriptionText: "비비비비비", contentText: "보보보보보보보보"),
-						CellDTO(titleText: "가가가가", descriptionText: "기기기기기", contentText: "고고고고고고고고"),
-						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
-						CellDTO(titleText: "다다다다", descriptionText: "다다다다다", contentText: "다다다다다다다다"),
-						CellDTO(titleText: "라라라라", descriptionText: "리리리리리", contentText: "로로로로로로로로"),
-						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모"),
-						CellDTO(titleText: "바바바바", descriptionText: "비비비비비", contentText: "보보보보보보보보"),
-						CellDTO(titleText: "가가가가", descriptionText: "기기기기기", contentText: "고고고고고고고고"),
-						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
-						CellDTO(titleText: "다다다다", descriptionText: "다다다다다", contentText: "다다다다다다다다"),
-						CellDTO(titleText: "라라라라", descriptionText: "리리리리리", contentText: "로로로로로로로로"),
-						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모"),
-						CellDTO(titleText: "바바바바", descriptionText: "비비비비비", contentText: "보보보보보보보보"),
+						CellDTO(titleText: "title", descriptionText: "description", contentText: "content"),
+						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
+						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oi pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjjwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
+						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw p pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
+						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj"),
+						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oak pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjwlaw; l")
+
 					]
 				)
 				.compactMap{$0}
@@ -145,31 +116,37 @@ class CellViewModel: ViewBindable {
 
 class NoticeCell: UITableViewCell {
 	let view = UIView().then{
+		$0.sizeToFit()
 		$0.backgroundColor = .systemGray3
+		$0.clipsToBounds = true
+		$0.isOpaque = true
 	}
+
 	let viewTop = UIView().then{
 		$0.backgroundColor = .systemGreen
+		$0.isOpaque = true
 	}
-	let viewBottom = UIView()
+
+	let viewBottom = UIView().then{
+		$0.isOpaque = true
+	}
 
 	let titleLabel = UILabel().then{
-//		$0.sizeToFit()
 		$0.backgroundColor = .systemYellow
-//		$0.numberOfLines = 0
+		$0.isOpaque = false
+		$0.numberOfLines = 0
 	}
 
 	let dateLabel = UILabel().then{
-//		$0.sizeToFit()
 		$0.backgroundColor = .systemOrange
+		$0.isOpaque = false
+		$0.numberOfLines = 0
 	}
 
-
 	let contentLabel = UILabel().then{
-//		$0.sizeToFit()
 		$0.backgroundColor = .systemRed
 		$0.numberOfLines = 0
-
-
+		$0.isOpaque = false
 	}
 
 	static let id = "cell"
@@ -177,6 +154,7 @@ class NoticeCell: UITableViewCell {
 	var disposeBag = DisposeBag()
 
 	override func prepareForReuse() {
+		super.prepareForReuse()
 		disposeBag = DisposeBag()
 
 		titleLabel.text = nil
@@ -205,46 +183,43 @@ class NoticeCell: UITableViewCell {
 		}
 
 		view.snp.makeConstraints{
-			$0.left.equalTo(16)
-			$0.right.equalTo(-16)
-			$0.top.equalTo(16)
-			$0.bottom.equalTo(-16)
-
+			$0.top.equalTo(viewTop.snp.top)
+			$0.bottom.equalToSuperview().offset(-16)
+			$0.left.equalToSuperview().offset(16)
+			$0.right.equalToSuperview().offset(-16)
 		}
 
 		viewTop.snp.makeConstraints{
-			$0.top.left.equalTo(16)
-			$0.right.equalTo(-16)
-			$0.bottom.equalTo(dateLabel.snp.bottom)
+			$0.left.equalToSuperview().offset(16)
+			$0.top.equalToSuperview().offset(16)
+			$0.right.equalToSuperview().offset(-16)
 		}
 
 		viewBottom.snp.makeConstraints{
 			$0.left.right.bottom.equalToSuperview()
-//			$0.top.equalTo(viewTop.snp.bottom)
 		}
 
 		titleLabel.snp.makeConstraints{
-			$0.top.left.right.equalToSuperview()
+			$0.left.top.right.equalToSuperview()
 			$0.bottom.equalTo(dateLabel.snp.top).offset(-16)
 		}
 
 		dateLabel.snp.makeConstraints{
-			$0.bottom.left.right.equalToSuperview()
-			$0.top.equalTo(titleLabel.snp.bottom).offset(16)
+			$0.left.right.bottom.equalToSuperview()
 		}
 
 		contentLabel.snp.makeConstraints{
-			$0.top.left.bottom.right.equalToSuperview()
+			$0.left.right.top.bottom.equalToSuperview()
 		}
 
-		titleLabel.setContentHuggingPriority(.required, for: .horizontal)
-		titleLabel.setContentHuggingPriority(.required, for: .vertical)
+		titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+		titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
 
-		dateLabel.setContentHuggingPriority(.required, for: .horizontal)
-		dateLabel.setContentHuggingPriority(.required, for: .vertical)
+		dateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+		dateLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
 
-		contentLabel.setContentHuggingPriority(.required, for: .horizontal)
-		contentLabel.setContentHuggingPriority(.required, for: .vertical)
+		contentLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+		contentLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
 
 
 	}
