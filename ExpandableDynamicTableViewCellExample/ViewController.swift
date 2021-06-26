@@ -95,10 +95,9 @@ class ViewController: UIViewController, BindView{
 
 
 		if data.isExpanded {
-
-			return sizeTop.height + sizeBottom.height + 60
+			return sizeTop.height + sizeBottom.height + 48
 		} else {
-			return sizeTop.height + 40
+			return sizeTop.height + 32
 		}
 	}
 

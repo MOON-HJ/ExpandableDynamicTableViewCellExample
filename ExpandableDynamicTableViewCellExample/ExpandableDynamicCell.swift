@@ -63,11 +63,11 @@ class CellViewModel: ViewBindable {
 			case .fetch :
 				Observable<[CellDTO]>.just(
 					[
-						CellDTO(titleText: "제목제목", descriptionText: "날짜날짜", contentText: "내용내용"),
+						CellDTO(titleText: "제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목", descriptionText: "날짜날짜", contentText: "내용내용"),
 						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
 						CellDTO(titleText: "다다다다", descriptionText: "다다다다다", contentText: "다다다다다다다다"),
 						CellDTO(titleText: "라라라라", descriptionText: "리리리리리", contentText: "로로로로로로로로"),
-						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모"),
+						CellDTO(titleText: "마마마마", descriptionText: "미미미미미", contentText: "모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모모"),
 						CellDTO(titleText: "바바바바", descriptionText: "비비비비비", contentText: "보보보보보보보보"),
 						CellDTO(titleText: "가가가가", descriptionText: "기기기기기", contentText: "고고고고고고고고"),
 						CellDTO(titleText: "나나나나", descriptionText: "니니니니니", contentText: "노노노노노노노노"),
@@ -145,28 +145,30 @@ class CellViewModel: ViewBindable {
 
 class NoticeCell: UITableViewCell {
 	let view = UIView().then{
-		$0.backgroundColor = .red
+		$0.backgroundColor = .systemGray3
 	}
-	let viewTop = UIView()
-	let viewBottom = UIView().then{
-		$0.backgroundColor = .green
+	let viewTop = UIView().then{
+		$0.backgroundColor = .systemGreen
 	}
+	let viewBottom = UIView()
 
 	let titleLabel = UILabel().then{
-		$0.sizeToFit()
-		//		$0.backgroundColor = .purple
-
+//		$0.sizeToFit()
+		$0.backgroundColor = .systemYellow
+//		$0.numberOfLines = 0
 	}
 
 	let dateLabel = UILabel().then{
-		$0.sizeToFit()
-		$0.backgroundColor = .systemBlue
+//		$0.sizeToFit()
+		$0.backgroundColor = .systemOrange
 	}
 
 
 	let contentLabel = UILabel().then{
-		$0.sizeToFit()
-		$0.backgroundColor = .magenta
+//		$0.sizeToFit()
+		$0.backgroundColor = .systemRed
+		$0.numberOfLines = 0
+
 
 	}
 
@@ -177,7 +179,12 @@ class NoticeCell: UITableViewCell {
 	override func prepareForReuse() {
 		disposeBag = DisposeBag()
 
+		titleLabel.text = nil
+		dateLabel.text = nil
+		contentLabel.text = nil
+
 	}
+
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -200,34 +207,34 @@ class NoticeCell: UITableViewCell {
 		view.snp.makeConstraints{
 			$0.left.equalTo(16)
 			$0.right.equalTo(-16)
-			$0.top.equalTo(viewTop.snp.top)
+			$0.top.equalTo(16)
 			$0.bottom.equalTo(-16)
+
 		}
 
 		viewTop.snp.makeConstraints{
 			$0.top.left.equalTo(16)
 			$0.right.equalTo(-16)
-			$0.top.equalTo(16)
+			$0.bottom.equalTo(dateLabel.snp.bottom)
 		}
 
 		viewBottom.snp.makeConstraints{
-			$0.left.right.equalToSuperview()
-			$0.top.equalTo(viewTop.snp.bottom)
-			$0.bottom.equalToSuperview()
+			$0.left.right.bottom.equalToSuperview()
+//			$0.top.equalTo(viewTop.snp.bottom)
 		}
 
 		titleLabel.snp.makeConstraints{
 			$0.top.left.right.equalToSuperview()
-			$0.bottom.equalTo(16)
+			$0.bottom.equalTo(dateLabel.snp.top).offset(-16)
 		}
 
 		dateLabel.snp.makeConstraints{
 			$0.bottom.left.right.equalToSuperview()
-			$0.top.equalTo(16)
+			$0.top.equalTo(titleLabel.snp.bottom).offset(16)
 		}
 
 		contentLabel.snp.makeConstraints{
-			$0.top.bottom.right.equalToSuperview()
+			$0.top.left.bottom.right.equalToSuperview()
 		}
 
 		titleLabel.setContentHuggingPriority(.required, for: .horizontal)
