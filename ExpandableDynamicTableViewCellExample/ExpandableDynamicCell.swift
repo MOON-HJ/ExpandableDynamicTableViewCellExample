@@ -63,7 +63,7 @@ class CellViewModel: ViewBindable {
 			case .fetch :
 				Observable<[CellDTO]>.just(
 					[
-						CellDTO(titleText: "title", descriptionText: "description", contentText: "content"),
+						CellDTO(titleText: "title", descriptionText: "0000/00/00", contentText: "content"),
 						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
 						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw pow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oi pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjjwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
 						CellDTO(titleText: "title laksd lka wklj lkawj owj pqwj qowj qowj pqowj pqowj pqojw p pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowj pqwj qowj qowj pqowjow", descriptionText: "description wio jqwij oiwj oqijw oiqjw oiqjw oijwoiqj oiqjwi ", contentText: "content oiqwj oiqjw oijqwo jqownd qmwnd ljwnef ekf jha soiwej lakf ioqewjlaksdiowefl kqepfoqwj qwm ;qwoi qowqw iqwj dlqkwdm ioqwj mqwkm ;qwok poqkw;qw;l qowk almwd oakwlaw; l"),
@@ -88,65 +88,50 @@ class CellViewModel: ViewBindable {
 	}
 }
 
-//class ExpandableDynamicCell: UITableViewCell {
-//
-//    @IBOutlet weak var viewTop: UIView!
-//    @IBOutlet weak var viewBottom: UIView!
-//    @IBOutlet weak var labelTitle: UILabel!
-//    @IBOutlet weak var labelDescription: UILabel!
-//    @IBOutlet weak var labelContent: UILabel!
-//
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//
-//        labelTitle.text = nil
-//        labelDescription.text = nil
-//        labelContent.text = nil
-//    }
-//
-//    func configure(_ data: CellDTO) {
-//        labelTitle.text = data.titleText
-//        labelDescription.text = data.descriptionText
-//        labelContent.text = data.contentText
-//    }
-//
-//
-//
-//}
-
 class NoticeCell: UITableViewCell {
 	let view = UIView().then{
-		$0.sizeToFit()
 		$0.backgroundColor = .systemGray3
 		$0.clipsToBounds = true
 		$0.isOpaque = true
+		$0.autoresizingMask = .flexibleBottomMargin
+
 	}
 
 	let viewTop = UIView().then{
 		$0.backgroundColor = .systemGreen
 		$0.isOpaque = true
+		$0.autoresizingMask = .flexibleBottomMargin
+
+
 	}
 
 	let viewBottom = UIView().then{
 		$0.isOpaque = true
+		$0.autoresizingMask = .flexibleBottomMargin
 	}
 
 	let titleLabel = UILabel().then{
 		$0.backgroundColor = .systemYellow
 		$0.isOpaque = false
 		$0.numberOfLines = 0
+		$0.autoresizingMask = .flexibleBottomMargin
+
 	}
 
 	let dateLabel = UILabel().then{
 		$0.backgroundColor = .systemOrange
 		$0.isOpaque = false
 		$0.numberOfLines = 0
+		$0.autoresizingMask = .flexibleBottomMargin
+
 	}
 
 	let contentLabel = UILabel().then{
 		$0.backgroundColor = .systemRed
 		$0.numberOfLines = 0
 		$0.isOpaque = false
+		$0.autoresizingMask = .flexibleBottomMargin
+
 	}
 
 	static let id = "cell"
@@ -166,6 +151,13 @@ class NoticeCell: UITableViewCell {
 
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		self.clipsToBounds = true
+
+		self.contentView.isOpaque = false
+		self.contentView.clipsToBounds = true
+		self.clipsToBounds = true
+
+
 		[view, viewTop].forEach{
 			self.contentView.addSubview($0)
 		}
@@ -181,18 +173,20 @@ class NoticeCell: UITableViewCell {
 		[contentLabel].forEach{
 			self.viewBottom.addSubview($0)
 		}
+		
 
 		view.snp.makeConstraints{
 			$0.top.equalTo(viewTop.snp.top)
-			$0.bottom.equalToSuperview().offset(-16)
-			$0.left.equalToSuperview().offset(16)
-			$0.right.equalToSuperview().offset(-16)
+			$0.bottom.equalToSuperview().inset(20)
+			$0.left.equalToSuperview().offset(20)
+			$0.right.equalToSuperview().offset(-20)
+			$0.bottom.equalTo(viewBottom.snp.bottom)
 		}
 
 		viewTop.snp.makeConstraints{
-			$0.left.equalToSuperview().offset(16)
-			$0.top.equalToSuperview().offset(16)
-			$0.right.equalToSuperview().offset(-16)
+			$0.left.equalToSuperview().offset(20)
+			$0.top.equalToSuperview().offset(20)
+			$0.right.equalToSuperview().offset(-20)
 		}
 
 		viewBottom.snp.makeConstraints{
@@ -201,11 +195,12 @@ class NoticeCell: UITableViewCell {
 
 		titleLabel.snp.makeConstraints{
 			$0.left.top.right.equalToSuperview()
-			$0.bottom.equalTo(dateLabel.snp.top).offset(-16)
+//			$0.bottom.equalTo(dateLabel.snp.top).offset(-16)
 		}
 
 		dateLabel.snp.makeConstraints{
 			$0.left.right.bottom.equalToSuperview()
+			$0.top.equalTo(titleLabel.snp.bottom).offset(20)
 		}
 
 		contentLabel.snp.makeConstraints{

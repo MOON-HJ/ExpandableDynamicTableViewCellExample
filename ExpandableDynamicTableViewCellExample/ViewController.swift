@@ -82,7 +82,7 @@ class ViewController: UIViewController, BindView{
 			.disposed(by: disposeBag)
 	}
 
-	func heightForData(_ data: CellDTO) -> CGFloat {
+	func heightForData(_ data: CellDTO, index: IndexPath) -> CGFloat {
 		if cell == nil {
 			cell = tableView.dequeueReusableCell(withIdentifier: NoticeCell.id) as? NoticeCell
 		}
@@ -90,14 +90,20 @@ class ViewController: UIViewController, BindView{
 		cell.setNeedsLayout()
 		cell.layoutIfNeeded()
 
-		let sizeTop = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-		let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+		let sizeTop = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
+		let size = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 
+//		let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
+		let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
+		print("[\(index.row)] sizeTop:\(sizeTop.height), sizeBottom:\(sizeBottom.height)")
 
 		if data.isExpanded {
-			return sizeTop.height + sizeBottom.height + 48
+			return sizeTop.height + sizeBottom.height + 60
+//			return 40 + 21.0 + 48
 		} else {
-			return sizeTop.height + 32
+			return sizeTop.height + 40
+//			return 40 + 48
+
 		}
 	}
 
@@ -106,7 +112,7 @@ class ViewController: UIViewController, BindView{
 extension ViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		guard let items = viewBinder?.items[indexPath.row] else { return 0.0}
-		return self.heightForData(items)
+		return self.heightForData(items, index: indexPath)
 	}
 
 }
