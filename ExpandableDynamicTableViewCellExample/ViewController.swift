@@ -91,19 +91,12 @@ class ViewController: UIViewController, BindView{
 		cell.layoutIfNeeded()
 
 		let sizeTop = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
-		let size = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-
-//		let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
 		let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
-		print("[\(index.row)] sizeTop:\(sizeTop.height), sizeBottom:\(sizeBottom.height)")
 
 		if data.isExpanded {
-			return sizeTop.height + sizeBottom.height + 60
-//			return 40 + 21.0 + 48
+			return sizeTop.height + sizeBottom.height
 		} else {
-			return sizeTop.height + 40
-//			return 40 + 48
-
+			return sizeTop.height
 		}
 	}
 

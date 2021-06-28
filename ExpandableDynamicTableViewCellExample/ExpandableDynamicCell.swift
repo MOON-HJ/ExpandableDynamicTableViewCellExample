@@ -90,19 +90,16 @@ class CellViewModel: ViewBindable {
 
 class NoticeCell: UITableViewCell {
 	let view = UIView().then{
-		$0.backgroundColor = .systemGray3
+        $0.backgroundColor = .darkGray
 		$0.clipsToBounds = true
 		$0.isOpaque = true
 		$0.autoresizingMask = .flexibleBottomMargin
-
 	}
 
 	let viewTop = UIView().then{
-		$0.backgroundColor = .systemGreen
+		$0.backgroundColor = .lightGray
 		$0.isOpaque = true
 		$0.autoresizingMask = .flexibleBottomMargin
-
-
 	}
 
 	let viewBottom = UIView().then{
@@ -157,7 +154,6 @@ class NoticeCell: UITableViewCell {
 		self.contentView.clipsToBounds = true
 		self.clipsToBounds = true
 
-
 		[view, viewTop].forEach{
 			self.contentView.addSubview($0)
 		}
@@ -177,16 +173,12 @@ class NoticeCell: UITableViewCell {
 
 		view.snp.makeConstraints{
 			$0.top.equalTo(viewTop.snp.top)
-			$0.bottom.equalToSuperview().inset(20)
-			$0.left.equalToSuperview().offset(20)
-			$0.right.equalToSuperview().offset(-20)
-			$0.bottom.equalTo(viewBottom.snp.bottom)
+            $0.left.right.bottom.top.equalToSuperview()
+            $0.bottom.equalTo(viewBottom.snp.bottom)
 		}
 
 		viewTop.snp.makeConstraints{
-			$0.left.equalToSuperview().offset(20)
-			$0.top.equalToSuperview().offset(20)
-			$0.right.equalToSuperview().offset(-20)
+            $0.left.right.top.equalToSuperview()
 		}
 
 		viewBottom.snp.makeConstraints{
@@ -194,17 +186,22 @@ class NoticeCell: UITableViewCell {
 		}
 
 		titleLabel.snp.makeConstraints{
-			$0.left.top.right.equalToSuperview()
-//			$0.bottom.equalTo(dateLabel.snp.top).offset(-16)
+            $0.left.equalToSuperview().offset(20)
+            $0.right.equalToSuperview().offset(-20)
+            $0.top.equalToSuperview().offset(20)
 		}
 
 		dateLabel.snp.makeConstraints{
-			$0.left.right.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.left.equalToSuperview().offset(20)
+            $0.right.equalToSuperview().offset(-20)
 			$0.top.equalTo(titleLabel.snp.bottom).offset(20)
+            $0.bottom.equalToSuperview().offset(-20)
 		}
 
 		contentLabel.snp.makeConstraints{
-			$0.left.right.top.bottom.equalToSuperview()
+            $0.left.top.equalToSuperview().offset(20)
+            $0.right.bottom.equalToSuperview().offset(-20)
 		}
 
 		titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
