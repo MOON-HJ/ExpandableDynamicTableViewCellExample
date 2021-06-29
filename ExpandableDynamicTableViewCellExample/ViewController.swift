@@ -90,13 +90,15 @@ class ViewController: UIViewController, BindView{
 		cell.setNeedsLayout()
 		cell.layoutIfNeeded()
 
-		let sizeTop = cell.viewTop.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
-		let sizeBottom = cell.viewBottom.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
-
+//        let sizeTop = cell.viewTop.frame
+        let titleHeight = cell.titleLabel.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        let dateHeight = cell.dateLabel.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        let height =  titleHeight + dateHeight  + 60
+		
 		if data.isExpanded {
-			return sizeTop.height + sizeBottom.height
+            return UITableView.automaticDimension
 		} else {
-			return sizeTop.height
+			return height
 		}
 	}
 
